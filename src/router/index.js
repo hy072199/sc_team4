@@ -12,14 +12,19 @@ const routes = [
     component: () => import('@/views/BoardListView.vue'),
   },
   {
-    path: '/board/:category/:id',
-    name: 'boardDetail',
-    component: () => import('@/views/BoardDetailView.vue'),
-  },
-  {
     path: '/board/:category/write',
     name: 'boardWrite',
     component: () => import('@/views/BoardWriteView.vue'),
+  },
+  {
+    path: '/board/:category/:id/edit',
+    name: 'boardEdit',
+    component: () => import('@/views/BoardWriteView.vue'),
+  },
+  {
+    path: '/board/:category/:id',
+    name: 'boardDetail',
+    component: () => import('@/views/BoardDetailView.vue'),
   },
 ]
 
