@@ -14,6 +14,7 @@ const items = computed(() => getByCategory(route.params.category))
 <template>
   <main class="board-list">
     <h2>{{ route.params.category }} ({{ items.length }}건)</h2>
+    <AttractionMap />  <!-- ← 이 줄 추가 -->
     <div class="grid">
       <PlaceCard v-for="item in items" :key="item.contentid" :item="item" />
     </div>
