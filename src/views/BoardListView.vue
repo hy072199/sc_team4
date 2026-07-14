@@ -1,9 +1,11 @@
 <!-- src/views/BoardListView.vue -->
 <script setup>
+<script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRegionData } from '@/composables/useRegionData'
 import PlaceCard from '@/components/common/PlaceCard.vue'
+import AttractionMap from '@/components/AttractionMap.vue'
 
 const route = useRoute()
 const { getByCategory } = useRegionData()
