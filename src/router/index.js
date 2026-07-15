@@ -7,9 +7,14 @@ const routes = [
     component: () => import('@/views/HomeView.vue'),
   },
   {
+    path: '/explore/:category',
+    name: 'exploreList',
+    component: () => import('@/views/BoardListView.vue'), // 관광 정보 카드+지도+통계
+  },
+  {
     path: '/board/:category',
     name: 'boardList',
-    component: () => import('@/views/BoardListView.vue'),
+    component: () => import('@/views/PostListView.vue'), // 진짜 커뮤니티 게시판
   },
   {
     path: '/board/:category/write',

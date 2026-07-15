@@ -13,7 +13,15 @@ const posts = computed(() => getPosts(route.params.category))
 
 <template>
   <main class="post-list">
-    <h2>{{ route.params.category }} 게시판</h2>
+    <div class="post-list-header">
+      <h2>{{ route.params.category }} 게시판</h2>
+      <router-link
+        :to="`/board/${route.params.category}/write`"
+        class="write-button"
+      >
+        + 글쓰기
+      </router-link>
+    </div>
 
     <table>
       <thead>
@@ -26,24 +34,80 @@ const posts = computed(() => getPosts(route.params.category))
       <tbody>
         <tr v-for="(post, index) in posts" :key="post.id">
           <td>{{ index + 1 }}</td>
-          <td>{{ post.title }}</td>
+          <td>
+            <router-link :to="`/board/${route.params.category}/${post.id}`">
+              {{ post.title }}
+            </router-link>
+          </td>
           <td>{{ new Date(post.createdAt).toLocaleDateString() }}</td>
         </tr>
       </tbody>
     </table>
 
-    <p v-if="posts.length === 0">아직 작성된 글이 없습니다.</p>
+    <p v-if="posts.length === 0" class="empty-message">
+      아직 작성된 글이 없습니다.
+    </p>
   </main>
 </template>
 
 <style scoped>
+.post-list {
+  width: min(1000px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.post-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.post-list-header h2 {
+  margin: 0;
+}
+
+.write-button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #6366f1;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.write-button:hover {
+  background: #4f46e5;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
 }
-th, td {
+
+th,
+td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+}
+
+td a {
+  color: inherit;
+  text-decoration: none;
+}
+
+td a:hover {
+  color: #6366f1;
+  text-decoration: underline;
+}
+
+.empty-message {
+  margin-top: 24px;
+  text-align: center;
+  color: #6b7280;
 }
 </style>
