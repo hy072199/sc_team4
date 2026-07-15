@@ -1,5 +1,6 @@
 <script setup>
 import { useRegionData } from '@/composables/useRegionData'
+import CategoryBarChart from '@/components/chart/CategoryBarChart.vue'
 
 const { getByCategory } = useRegionData()
 
@@ -32,6 +33,11 @@ const categories = [
         <p>{{ getByCategory(cat.key).length }}건</p>
       </router-link>
     </section>
+
+    <section class="stats">
+      <h2>권역 데이터 현황</h2>
+      <CategoryBarChart />
+    </section>
   </main>
 </template>
 
@@ -57,5 +63,11 @@ const categories = [
 }
 .category-card:hover {
   border-color: #6366f1;
+}
+.stats {
+  padding: 24px;
+}
+.stats h2 {
+  margin-bottom: 12px;
 }
 </style>
