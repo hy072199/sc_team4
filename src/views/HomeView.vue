@@ -5,13 +5,13 @@ import CategoryBarChart from '@/components/chart/CategoryBarChart.vue'
 const { getByCategory } = useRegionData()
 
 const categories = [
-  { key: 'tourism', label: '관광지' },
-  { key: 'culture', label: '문화시설' },
-  { key: 'leisure', label: '레포츠' },
-  { key: 'shopping', label: '쇼핑' },
-  { key: 'lodging', label: '숙박' },
-  { key: 'courses', label: '여행코스' },
-  { key: 'festivals', label: '축제공연행사' },
+  { key: 'tourism', label: '관광지', icon: '🏞️' },
+  { key: 'culture', label: '문화시설', icon: '🏛️' },
+  { key: 'leisure', label: '레포츠', icon: '🚴' },
+  { key: 'shopping', label: '쇼핑', icon: '🛍️' },
+  { key: 'lodging', label: '숙박', icon: '🏨' },
+  { key: 'courses', label: '여행코스', icon: '🗺️' },
+  { key: 'festivals', label: '축제공연행사', icon: '🎉' },
 ]
 </script>
 
@@ -29,8 +29,13 @@ const categories = [
         :to="`/board/${cat.key}`"
         class="category-card"
       >
-        <h3>{{ cat.label }}</h3>
-        <p>{{ getByCategory(cat.key).length }}건</p>
+        <div class="category-card-inner">
+          <span class="category-icon">{{ cat.icon }}</span>
+          <div class="category-text">
+            <h3>{{ cat.label }}</h3>
+            <p>{{ getByCategory(cat.key).length }}건</p>
+          </div>
+        </div>
       </router-link>
     </section>
 
@@ -63,6 +68,20 @@ const categories = [
 }
 .category-card:hover {
   border-color: #6366f1;
+}
+.category-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.category-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.category-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .stats {
   padding: 24px;
