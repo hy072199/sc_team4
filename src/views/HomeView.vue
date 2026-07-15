@@ -91,7 +91,6 @@ const categories = [
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   padding: 24px;
->>>>>>> master
 }
 
 .category-card {
@@ -119,7 +118,6 @@ const categories = [
   align-items: center;
   justify-content: center;
   gap: 12px;
->>>>>>> master
 }
 
 .category-icon {
@@ -149,7 +147,6 @@ const categories = [
   text-overflow: ellipsis;
   margin: 0;
 }
->>>>>>> master
 .stats {
   padding: 28px;
   border: 1px solid #e5e7eb;
