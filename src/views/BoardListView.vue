@@ -32,9 +32,7 @@ const items = computed(() => getByCategory(route.params.category))
         <span class="item-count">{{ items.length }}건</span>
       </div>
 
-      <p class="page-description">
-        지도에서 위치를 확인하고 원하는 장소 정보를 살펴보세요.
-      </p>
+      
     </header>
 
     <section class="map-section">
