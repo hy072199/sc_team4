@@ -88,9 +88,10 @@ const categories = [
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  padding: 32px 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 24px;
+>>>>>>> master
 }
 
 .category-card {
@@ -116,7 +117,9 @@ const categories = [
 .category-card-inner {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 12px;
+>>>>>>> master
 }
 
 .category-icon {
@@ -141,17 +144,12 @@ const categories = [
 }
 
 .category-text h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
-  color: #1f2937;
-  font-size: 17px;
 }
-
-.category-text p {
-  margin: 0;
-  color: #6b7280;
-  font-size: 14px;
-}
-
+>>>>>>> master
 .stats {
   padding: 28px;
   border: 1px solid #e5e7eb;

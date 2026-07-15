@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'YeogiOttaeJalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+* {
+  font-family: 'YeogiOttaeJalnan', sans-serif;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,8 +22,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'YeogiOttaeJalnan', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'YeogiOttaeJalnan', system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
