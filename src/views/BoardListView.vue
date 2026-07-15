@@ -1,10 +1,10 @@
-<!-- src/views/BoardListView.vue -->
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRegionData } from '@/composables/useRegionData'
 import PlaceCard from '@/components/common/PlaceCard.vue'
 import AttractionMap from '@/components/AttractionMap.vue'
+import DistrictChart from '@/components/chart/DistrictChart.vue'
 
 const route = useRoute()
 const { getByCategory } = useRegionData()
@@ -38,6 +38,17 @@ const items = computed(() => getByCategory(route.params.category))
       </div>
 
       <AttractionMap :items="items" />
+    </section>
+
+    <section class="stats-section">
+      <div class="section-header">
+        <div>
+          <p class="section-label">STATS</p>
+          <h3>자치구별 분포</h3>
+        </div>
+      </div>
+
+      <DistrictChart :items="items" />
     </section>
 
     <section class="place-section">
@@ -107,11 +118,13 @@ const items = computed(() => getByCategory(route.params.category))
 }
 
 .map-section,
+.stats-section,
 .place-section {
   margin-top: 36px;
 }
 
-.map-section {
+.map-section,
+.stats-section {
   padding: 24px;
   border: 1px solid #e5e7eb;
   border-radius: 20px;
@@ -122,45 +135,3 @@ const items = computed(() => getByCategory(route.params.category))
 .section-header {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-
-.section-header h3 {
-  margin: 0;
-  font-size: 22px;
-}
-
-.map-guide {
-  color: #6b7280;
-  font-size: 14px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-@media (max-width: 640px) {
-  .board-list {
-    width: min(100% - 20px, 1200px);
-    padding: 32px 0 48px;
-  }
-
-  .section-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .map-section {
-    padding: 16px;
-    border-radius: 16px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

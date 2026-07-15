@@ -14,7 +14,8 @@ dist-ssr
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json
+.netlify
+deno.lock
 .idea
 .DS_Store
 *.suo
@@ -26,3 +27,7 @@ dist-ssr
 .env
 .env.local
 
+
+# Local Netlify folder
+.netlify
+deno.lock

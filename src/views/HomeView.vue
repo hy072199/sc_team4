@@ -1,5 +1,6 @@
 <script setup>
 import { useRegionData } from '@/composables/useRegionData'
+import CategoryBarChart from '@/components/chart/CategoryBarChart.vue'
 
 const { getByCategory } = useRegionData()
 
@@ -23,19 +24,24 @@ const categories = [
 
     <section class="category-grid">
       <router-link
-  v-for="cat in categories"
-  :key="cat.key"
-  :to="`/board/${cat.key}`"
-  class="category-card"
->
-  <div class="category-card-inner">
-    <span class="category-icon">{{ cat.icon }}</span>
-    <div class="category-text">
-      <h3>{{ cat.label }}</h3>
-      <p>{{ getByCategory(cat.key).length }}건</p>
-    </div>
-  </div>
-</router-link>
+        v-for="cat in categories"
+        :key="cat.key"
+        :to="`/board/${cat.key}`"
+        class="category-card"
+      >
+        <div class="category-card-inner">
+          <span class="category-icon">{{ cat.icon }}</span>
+          <div class="category-text">
+            <h3>{{ cat.label }}</h3>
+            <p>{{ getByCategory(cat.key).length }}건</p>
+          </div>
+        </div>
+      </router-link>
+    </section>
+
+    <section class="stats">
+      <h2>권역 데이터 현황</h2>
+      <CategoryBarChart />
     </section>
   </main>
 </template>
@@ -68,15 +74,19 @@ const categories = [
   align-items: center;
   gap: 12px;
 }
-
 .category-icon {
   font-size: 1.5rem;
   line-height: 1;
 }
-
 .category-text {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+.stats {
+  padding: 24px;
+}
+.stats h2 {
+  margin-bottom: 12px;
 }
 </style>
