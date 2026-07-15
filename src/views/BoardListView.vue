@@ -14,12 +14,22 @@ const items = computed(() => getByCategory(route.params.category))
 
 <template>
   <main class="board-list">
+    <router-link to="/" class="back-link">
+      ← 전체 카테고리
+    </router-link>
+
     <section class="board-cta">
       <div class="board-cta-text">
         <p class="board-cta-title">이 지역 주민·여행자들과 정보를 나눠보세요</p>
-        <p class="board-cta-sub">직접 남긴 후기와 팁을 커뮤니티 게시판에서 확인할 수 있어요.</p>
+        <p class="board-cta-sub">
+          직접 남긴 후기와 팁을 커뮤니티 게시판에서 확인할 수 있어요.
+        </p>
       </div>
-      <router-link :to="`/board/${route.params.category}`" class="board-cta-button">
+
+      <router-link
+        :to="`/board/${route.params.category}`"
+        class="board-cta-button"
+      >
         게시판 바로가기 →
       </router-link>
     </section>
@@ -31,8 +41,6 @@ const items = computed(() => getByCategory(route.params.category))
         <h2>{{ route.params.category }}</h2>
         <span class="item-count">{{ items.length }}건</span>
       </div>
-
-      
     </header>
 
     <section class="map-section">
@@ -90,6 +98,27 @@ const items = computed(() => getByCategory(route.params.category))
   margin-bottom: 32px;
 }
 
+.back-link {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  margin-bottom: 20px;
+  color: #4f64d8;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.back-link:hover {
+  color: #3048b8;
+  transform: translateX(-3px);
+}
+
 .page-label,
 .section-label {
   margin: 0 0 8px;
@@ -120,12 +149,6 @@ const items = computed(() => getByCategory(route.params.category))
   font-weight: 700;
 }
 
-.page-description {
-  margin: 14px 0 0;
-  color: #6b7280;
-  font-size: 16px;
-}
-
 .board-cta {
   display: flex;
   align-items: center;
@@ -133,22 +156,22 @@ const items = computed(() => getByCategory(route.params.category))
   gap: 20px;
   margin-top: 48px;
   padding: 20px 24px;
+  border: 1px solid #c7d2fe;
   border-radius: 16px;
   background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-  border: 1px solid #c7d2fe;
 }
 
 .board-cta-title {
   margin: 0 0 4px;
-  font-weight: 700;
-  font-size: 16px;
   color: #312e81;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .board-cta-sub {
   margin: 0;
-  font-size: 14px;
   color: #4c4a8f;
+  font-size: 14px;
 }
 
 .board-cta-button {
@@ -157,8 +180,8 @@ const items = computed(() => getByCategory(route.params.category))
   border-radius: 10px;
   background: #6366f1;
   color: white;
-  font-weight: 700;
   font-size: 14px;
+  font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.15s ease;
@@ -213,6 +236,14 @@ const items = computed(() => getByCategory(route.params.category))
     padding: 32px 0 48px;
   }
 
+  .page-header {
+    margin-top: 24px;
+  }
+
+  .back-link {
+    margin-bottom: 14px;
+  }
+
   .section-header {
     align-items: flex-start;
     flex-direction: column;
@@ -225,8 +256,8 @@ const items = computed(() => getByCategory(route.params.category))
   }
 
   .board-cta {
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
     margin-top: 24px;
   }
 
