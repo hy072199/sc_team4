@@ -72,6 +72,7 @@ const categories = [
 .category-card-inner {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
 }
 .category-icon {
@@ -82,6 +83,13 @@ const categories = [
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.category-text h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 .stats {
   padding: 24px;
