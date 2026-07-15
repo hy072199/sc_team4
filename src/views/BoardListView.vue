@@ -14,6 +14,16 @@ const items = computed(() => getByCategory(route.params.category))
 
 <template>
   <main class="board-list">
+    <section class="board-cta">
+      <div class="board-cta-text">
+        <p class="board-cta-title">이 지역 주민·여행자들과 정보를 나눠보세요</p>
+        <p class="board-cta-sub">직접 남긴 후기와 팁을 커뮤니티 게시판에서 확인할 수 있어요.</p>
+      </div>
+      <router-link :to="`/board/${route.params.category}`" class="board-cta-button">
+        게시판 바로가기 →
+      </router-link>
+    </section>
+
     <header class="page-header">
       <p class="page-label">서울 지역 정보</p>
 
@@ -78,6 +88,7 @@ const items = computed(() => getByCategory(route.params.category))
 }
 
 .page-header {
+  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -115,6 +126,48 @@ const items = computed(() => getByCategory(route.params.category))
   margin: 14px 0 0;
   color: #6b7280;
   font-size: 16px;
+}
+
+.board-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 48px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  border: 1px solid #c7d2fe;
+}
+
+.board-cta-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #312e81;
+}
+
+.board-cta-sub {
+  margin: 0;
+  font-size: 14px;
+  color: #4c4a8f;
+}
+
+.board-cta-button {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #6366f1;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.board-cta-button:hover {
+  background: #4f46e5;
 }
 
 .map-section,
@@ -171,6 +224,17 @@ const items = computed(() => getByCategory(route.params.category))
   .stats-section {
     padding: 16px;
     border-radius: 16px;
+  }
+
+  .board-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 24px;
+  }
+
+  .board-cta-button {
+    width: 100%;
+    text-align: center;
   }
 
   .grid {

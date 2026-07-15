@@ -26,9 +26,9 @@ const categories = [
       <router-link
         v-for="cat in categories"
         :key="cat.key"
-        :to="`/board/${cat.key}`"
+        :to="`/explore/${cat.key}`"
         class="category-card"
-      >
+>
         <div class="category-card-inner">
           <span class="category-icon">{{ cat.icon }}</span>
           <div class="category-text">
