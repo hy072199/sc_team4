@@ -37,8 +37,6 @@ const categoryLabels = {
   'festival-performance-event': '축제·공연·행사',
 }
 
-console.log('현재 카테고리 값:', route.params.category)
-
 const categoryLabel = computed(() => {
   return categoryLabels[route.params.category] ?? route.params.category
 })
@@ -301,6 +299,7 @@ const mapItems = computed(() => {
 
 .board-cta-button {
   flex-shrink: 0;
+  box-sizing: border-box;
   padding: 12px 20px;
   border-radius: 10px;
   background: #6366f1;
@@ -414,15 +413,20 @@ const mapItems = computed(() => {
   }
 
   .board-cta {
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 24px;
-  }
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
+  flex-direction: column;
+  margin-top: 24px;
+  padding: 20px;
+}
 
-  .board-cta-button {
-    width: 100%;
-    text-align: center;
-  }
+.board-cta-button {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  white-space: normal;
+}
 
   .grid {
     grid-template-columns: 1fr;
