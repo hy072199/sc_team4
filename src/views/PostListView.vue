@@ -17,7 +17,7 @@ const posts = computed(() => getPosts(route.params.category))
     <button
       type="button"
       class="back-link"
-      @click="router.back()"
+      @click="router.push(`/explore/${route.params.category}`)"
     >
       ← 장소 목록으로
     </button>
@@ -38,7 +38,7 @@ const posts = computed(() => getPosts(route.params.category))
         <tr>
           <th>번호</th>
           <th>제목</th>
-          <th>작성일</th>
+          <th>작성일</th>Z
         </tr>
       </thead>
 
