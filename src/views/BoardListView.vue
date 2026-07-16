@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useRegionData } from '@/composables/useRegionData'
 import PlaceCard from '@/components/common/PlaceCard.vue'
@@ -9,7 +9,54 @@ import DistrictChart from '@/components/chart/DistrictChart.vue'
 const route = useRoute()
 const { getByCategory } = useRegionData()
 
+// 현재 카테고리에 해당하는 전체 장소 목록
 const items = computed(() => getByCategory(route.params.category))
+
+// 현재 선택한 자치구
+// 빈 문자열이면 아무 자치구도 선택하지 않은 상태
+const selectedDistrict = ref('')
+
+// 서울 25개 자치구 목록
+const districts = [
+  '강남구',
+  '강동구',
+  '강북구',
+  '강서구',
+  '관악구',
+  '광진구',
+  '구로구',
+  '금천구',
+  '노원구',
+  '도봉구',
+  '동대문구',
+  '동작구',
+  '마포구',
+  '서대문구',
+  '서초구',
+  '성동구',
+  '성북구',
+  '송파구',
+  '양천구',
+  '영등포구',
+  '용산구',
+  '은평구',
+  '종로구',
+  '중구',
+  '중랑구',
+]
+
+// 지도에 전달할 장소 목록
+const mapItems = computed(() => {
+  // 자치구를 선택하지 않았으면 빈 배열 전달
+  if (!selectedDistrict.value) {
+    return []
+  }
+
+  // 주소에 선택한 자치구가 포함된 장소만 반환
+  return items.value.filter((item) =>
+    item.addr1?.includes(selectedDistrict.value),
+  )
+})
 </script>
 
 <template>
@@ -20,7 +67,10 @@ const items = computed(() => getByCategory(route.params.category))
 
     <section class="board-cta">
       <div class="board-cta-text">
-        <p class="board-cta-title">이 지역 주민·여행자들과 정보를 나눠보세요</p>
+        <p class="board-cta-title">
+          이 지역 주민·여행자들과 정보를 나눠보세요
+        </p>
+
         <p class="board-cta-sub">
           직접 남긴 후기와 팁을 커뮤니티 게시판에서 확인할 수 있어요.
         </p>
@@ -35,32 +85,68 @@ const items = computed(() => getByCategory(route.params.category))
     </section>
 
     <header class="page-header">
-      <p class="page-label">서울 지역 정보</p>
+      <p class="page-label">
+        서울 지역 정보
+      </p>
 
       <div class="title-row">
         <h2>{{ route.params.category }}</h2>
-        <span class="item-count">{{ items.length }}건</span>
+
+        <span class="item-count">
+          {{ items.length }}건
+        </span>
       </div>
     </header>
 
     <section class="map-section">
       <div class="section-header">
         <div>
-          <p class="section-label">MAP</p>
-          <h3>지도에서 위치 확인</h3>
+          <p class="section-label">
+            MAP
+          </p>
+
+          <h3>
+            지도에서 위치 확인
+          </h3>
         </div>
 
-        <span class="map-guide">핀을 클릭하면 장소 정보를 볼 수 있어요.</span>
+        <div class="map-controls">
+          <span class="map-guide">
+            자치구를 선택하면 장소의 위치를 볼 수 있어요.
+          </span>
+
+          <select
+            v-model="selectedDistrict"
+            class="district-select"
+          >
+            <option value="">
+              자치구 선택
+            </option>
+
+            <option
+              v-for="district in districts"
+              :key="district"
+              :value="district"
+            >
+              {{ district }}
+            </option>
+          </select>
+        </div>
       </div>
 
-      <AttractionMap :items="items" />
+      <AttractionMap :items="mapItems" />
     </section>
 
     <section class="stats-section">
       <div class="section-header">
         <div>
-          <p class="section-label">STATS</p>
-          <h3>자치구별 분포</h3>
+          <p class="section-label">
+            STATS
+          </p>
+
+          <h3>
+            자치구별 분포
+          </h3>
         </div>
       </div>
 
@@ -70,8 +156,13 @@ const items = computed(() => getByCategory(route.params.category))
     <section class="place-section">
       <div class="section-header">
         <div>
-          <p class="section-label">PLACES</p>
-          <h3>장소 목록</h3>
+          <p class="section-label">
+            PLACES
+          </p>
+
+          <h3>
+            장소 목록
+          </h3>
         </div>
       </div>
 
@@ -219,9 +310,32 @@ const items = computed(() => getByCategory(route.params.category))
   font-size: 22px;
 }
 
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .map-guide {
   color: #6b7280;
   font-size: 14px;
+}
+
+.district-select {
+  min-width: 140px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.district-select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 .grid {
@@ -247,6 +361,16 @@ const items = computed(() => getByCategory(route.params.category))
   .section-header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .map-controls {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .district-select {
+    width: 100%;
   }
 
   .map-section,
