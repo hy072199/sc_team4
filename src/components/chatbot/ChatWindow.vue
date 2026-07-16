@@ -280,16 +280,16 @@ header button {
   font-weight: 700;
 }
 
-/* 모바일에서는 전체 화면 */
+/* 모바일에서는 화면 전체를 덮지 않고, 하단에 여백을 둔 카드 형태로 표시 */
 @media (max-width: 480px) {
   .chat-window {
-    top: 0 !important;
-    left: 0 !important;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
+    left: 12px !important;
+    right: 12px;
+    top: auto !important;
+    bottom: 88px !important;
+    width: auto;
+    height: min(65vh, 520px);
+    border-radius: 16px;
   }
 
   header {
