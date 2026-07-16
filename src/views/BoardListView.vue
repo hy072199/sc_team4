@@ -9,6 +9,40 @@ import DistrictChart from '@/components/chart/DistrictChart.vue'
 const route = useRoute()
 const { getByCategory } = useRegionData()
 
+const categoryLabels = {
+  tourism: '관광지',
+  culture: '문화시설',
+  restaurant: '음식점',
+  shopping: '쇼핑',
+
+  leisure: '레포츠',
+  leports: '레포츠',
+
+  accommodation: '숙박',
+  lodging: '숙박',
+  stay: '숙박',
+
+  course: '여행코스',
+  courses: '여행코스',
+  travelcourse: '여행코스',
+  'travel-course': '여행코스',
+  travelCourse: '여행코스',
+
+  festival: '축제·공연·행사',
+  festivals: '축제·공연·행사',
+  event: '축제·공연·행사',
+  performance: '축제·공연·행사',
+  festivalEvent: '축제·공연·행사',
+  'festival-event': '축제·공연·행사',
+  'festival-performance-event': '축제·공연·행사',
+}
+
+console.log('현재 카테고리 값:', route.params.category)
+
+const categoryLabel = computed(() => {
+  return categoryLabels[route.params.category] ?? route.params.category
+})
+
 // 현재 카테고리에 해당하는 전체 장소 목록
 const items = computed(() => getByCategory(route.params.category))
 
@@ -90,7 +124,7 @@ const mapItems = computed(() => {
       </p>
 
       <div class="title-row">
-        <h2>{{ route.params.category }}</h2>
+        <h2>{{ categoryLabel }}</h2>
 
         <span class="item-count">
           {{ items.length }}건
